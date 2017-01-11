@@ -1,0 +1,50 @@
+<!--ZhaoC-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Register Page</title>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <style type="text/css">
+        /*body{*/
+        /*background:#629BE5;*/
+        /*}*/
+    </style>
+</h:head>
+
+<h:body>
+    <h:form style="margin: auto; width: 30%; border: 1px solid #2aa89b; padding: 10px; top: 35px;">
+        <h:outputLabel style="font-size: x-large; font-weight: bolder; color: lightskyblue" value="Register Successfully!" />
+        <table>
+            <tr>
+                <td><h:outputLabel value="First Name: " /></td>
+                <td><h:outputLabel value="#{userMB.registeredUser.userFirstName}" /></td>
+            </tr>
+
+            <tr>
+                <td><h:outputLabel value="Last Name: " /></td>
+                <td><h:outputLabel value="#{userMB.registeredUser.userLastName}" /></td>
+            </tr>
+
+            <tr>
+                <td><p:outputLabel value="Birth:" /></td>
+                <td><h:outputLabel value="#{userMB.registeredUser.userBirth}" /></td>
+            </tr>
+
+            <tr>
+                <td><h:outputLabel value="Email : " /></td>
+                <td><h:outputLabel value="#{userMB.registeredUser.userEmail}" /></td>
+            </tr>
+
+            <tr>
+                <td><p:commandButton value="Back to login" action="#{navigationController.moveToLoginPage}" ajax="false"/></td>
+            </tr>
+        </table>
+    </h:form>
+</h:body>
+
+<h:outputScript library="js" name="index.js" />
+</html>

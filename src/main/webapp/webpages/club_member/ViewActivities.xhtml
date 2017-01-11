@@ -1,0 +1,84 @@
+<!--Chan Yu-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <title>View Activities</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:outputText value="Activities : "></h:outputText>
+        <p:dataTable id="activities" var="activity" value="#{actMB.currentUserActivityList}" style="width:100%; weight:30%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Activity ID" />
+                </f:facet>
+                <h:outputText value="#{activity.actId}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Activity Name" />
+                </f:facet>
+                <h:outputText value="#{activity.actName}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Club ID" />
+                </f:facet>
+                <h:outputText value="#{activity.clubId}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Start Date" />
+                </f:facet>
+                <h:outputText value="#{activity.actStartDate}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="End Date" />
+                </f:facet>
+                <h:outputText value="#{activity.actEndDate}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Status" />
+                </f:facet>
+                <h:outputText value="#{activity.actStatus}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Capacity" />
+                </f:facet>
+                <h:outputText value="#{activity.actCapacity}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Location" />
+                </f:facet>
+                <h:outputText value="#{activity.actLocation}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Budget" />
+                </f:facet>
+                <h:outputText value="#{activity.actBudget}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Assignee" />
+                </f:facet>
+                <h:outputText value="#{activity.actAssignee}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Note" />
+                </f:facet>
+                <h:outputText value="#{activity.actNote}" />
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+
+</html>

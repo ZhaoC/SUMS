@@ -1,0 +1,137 @@
+<!--Chan Yu-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Activity Page</title>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <style type="text/css">
+        /*body{*/
+        /*background:#629BE5;*/
+        /*}*/
+    </style>
+</h:head>
+
+<h:body>
+    <p:layout style="width:100%; height:90%; padding: 0px">
+        <p:layoutUnit position="west" resizable="true" size="400" minSize="300" maxSize="500">
+            <h:form>
+                <table>
+                    <tr>
+                        <td><h:outputLabel for="roleTitle" value="Role Title : " /></td>
+                        <td><p:inputText id="roleTitle" value="#{roleMB.roleTitle}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="roleMsg" />
+                        </p:inputText>
+                            <p:message id="titleMsg" for="roleTitle" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="rolePrivilege" value="Privilege : " /></td>
+                        <td><p:inputText id="rolePrivilege" value="#{roleMB.rolePrivilege}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="rolePrivilegeMsg" />
+                        </p:inputText>
+                            <p:message id="rolePrivilegeMsg" for="rolePrivilege" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="userId" value="User ID : " /></td>
+                        <td><p:inputText id="userId" value="#{roleMB.userId}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="userIdMsg" />
+                        </p:inputText>
+                            <p:message id="userIdMsg" for="userId" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="clubId" value="Club ID : " /></td>
+                        <td><p:inputText id="clubId" value="#{roleMB.clubId}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="clubIdMsg" />
+                        </p:inputText>
+                            <p:message id="clubIdMsg" for="clubId" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><p:outputLabel for="button" value="Start Date:" /></td>
+                        <td><p:calendar id="button" value="#{roleMB.roleInitDate}" showOn="button" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="roleStatus" value="Status : " /></td>
+                        <td><p:inputText id="roleStatus" value="#{roleMB.roleStatus}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="roleStatusMsg" />
+                        </p:inputText>
+                            <p:message id="roleStatusMsg" for="roleStatus" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><p:commandButton id="addRole" value="Add" action="#{roleMB.addRole}" ajax="false"/></td>
+                        <td><p:commandButton id="reset" value="Reset" action="#{roleMB.reset}" ajax="false"/></td>
+                    </tr>
+                </table>
+            </h:form>
+        </p:layoutUnit>
+
+        <p:layoutUnit position="center">
+            <h:form>
+                <h:outputText value="roles : "></h:outputText>
+                <p:dataTable id="roles" var="role" value="#{roleMB.roleList}" style="width:100%; weight:30%">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Role ID" />
+                        </f:facet>
+                        <h:outputText value="#{role.roleId}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Role Title" />
+                        </f:facet>
+                        <h:outputText value="#{role.roleTitle}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Role Privilege" />
+                        </f:facet>
+                        <h:outputText value="#{role.rolePrivilege}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="User ID" />
+                        </f:facet>
+                        <h:outputText value="#{role.userId}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Club ID" />
+                        </f:facet>
+                        <h:outputText value="#{role.clubId}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Role InitiDate" />
+                        </f:facet>
+                        <h:outputText value="#{role.roleInitDate}" />
+                     </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Role Status" />
+                        </f:facet>
+                        <h:outputText value="#{role.roleStatus}" />
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:layoutUnit>
+    </p:layout>
+</h:body>
+
+</html>

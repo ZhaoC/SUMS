@@ -1,0 +1,167 @@
+<!--ZhaoC-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Club Page</title>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <style type="text/css">
+        /*body{*/
+            /*background:#629BE5;*/
+        /*}*/
+    </style>
+</h:head>
+<h:body>
+    <p:layout style="width:100%; height:90%; padding: 0px">
+
+        <!--User Create new Club and will automatically assigned to be the club manager-->
+        <p:layoutUnit position="center" resizable="true" size="400" closable="true" collapsible="true">
+            <h:form>
+                <h:outputText value="Create New Club: "></h:outputText>
+                <table>
+                    <tr>
+                        <td><h:outputLabel for="clubName" value="Club Name : " /></td>
+                        <td><p:inputText id="clubName" value="#{clubMB.clubName}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="nameMsg" />
+                        </p:inputText>
+                            <p:message id="nameMsg" for="clubName" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="clubCategory" value="Category : " /></td>
+                        <td><p:inputText id="clubCategory" value="#{clubMB.clubCategory}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="clubCategoryMsg" />
+                        </p:inputText>
+                            <p:message id="clubCategoryMsg" for="clubCategory" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><p:outputLabel for="button" value="Date:" /></td>
+                        <td><p:calendar id="button" value="#{clubMB.clubInitDate}" showOn="button" /></td>
+                    </tr>
+
+                    <!--<tr>-->
+                        <!--<td><h:outputLabel for="clubStatus" value="Status : " /></td>-->
+                        <!--<td><p:inputText id="clubStatus" value="#{clubMB.clubStatus}" required="true" >-->
+                            <!--<f:validateLength minimum="1" />-->
+                            <!--<p:ajax event="blur" update="clubStatusMsg" />-->
+                        <!--</p:inputText>-->
+                            <!--<p:message id="clubStatusMsg" for="clubStatus" display="icon"/>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+
+                    <tr>
+                        <td><h:outputLabel for="clubNote" value="ClubNote : " /></td>
+                        <td><p:inputText id="clubNote" value="#{clubMB.clubNote}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="clubNoteMsg" />
+                        </p:inputText>
+                            <p:message id="clubNoteMsg" for="clubNote" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><p:commandButton id="createClub" value="Create" action="#{clubMB.currentUserCreateNewClub}" ajax="false"/></td>
+                        <td><p:commandButton id="reset" value="Reset" action="#{clubMB.reset}" ajax="false"/></td>
+                    </tr>
+                </table>
+            </h:form>
+
+            <!--Delete Activity-->
+            <h:form>
+                <h:panelGrid columns="2" style="display: none">
+                    Club to Delete: <h:inputText value="#{clubMB.clubId}"/>
+                    <h:commandButton value="delete club" action="#{clubMB.deleteClub}"/>
+                </h:panelGrid>
+            </h:form><br></br>
+        </p:layoutUnit>
+
+        <!--Layout for user to join new clubs-->
+        <p:layoutUnit position="east" size="700" header="More Clubs for You" resizable="true" closable="true" collapsible="true" effect="drop">
+            <h:form id="form">
+                <p:growl id="msgs" showDetail="true" />
+
+                <p:dataTable id="checkboxDT" var="club" value="#{clubMB.currentUserNotJoinedClubList}" selection="#{clubMB.selectedClubs}" rowKey="#{club.clubId}" style="margin-bottom:0">
+                    <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+                    <p:column headerText="Club ID">
+                        <h:outputText value="#{club.clubId}" />
+                    </p:column>
+                    <p:column headerText="Club Name">
+                        <h:outputText value="#{club.clubName}" />
+                    </p:column>
+                    <p:column headerText="Club Category">
+                        <h:outputText value="#{club.clubCategory}" />
+                    </p:column>
+                    <p:column headerText="Club Intro">
+                        <h:outputText value="#{club.clubNote}" />
+                    </p:column>
+                    <f:facet name="footer">
+                        <!--<p:commandButton process="checkboxDT" update=":form:multiClubDetail" icon="ui-icon-search" value="Join Selected Clubs" oncomplete="PF('multiClubDialog').show()" />-->
+                        <p:commandButton process="checkboxDT" icon="ui-icon-search" value="Join Selected Clubs" action="#{clubMB.joinSelectedClubsForCurrentUser}" ajax="false"/>
+                    </f:facet>
+                </p:dataTable>
+
+                <!--<p:dialog header="Selected Clubs" widgetVar="multiClubDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="200">-->
+                    <!--<p:outputPanel id="multiClubDetail" style="text-align:center;">-->
+                        <!--<ui:repeat value="#{clubMB.selectedClubs}" var="club">-->
+                            <!--<h:outputText value="#{club.clubName} - #{club.clubId}" style="display:block"/>-->
+                        <!--</ui:repeat>-->
+                    <!--</p:outputPanel>-->
+                <!--</p:dialog>-->
+            </h:form>
+        </p:layoutUnit>
+
+        <!--Show User Joined Clubs-->
+        <p:layoutUnit position="north" resizable="true" closable="true" collapsible="true">
+            <h:form>
+                <h:outputText value="Joined Clubs : "></h:outputText>
+                <p:dataTable id="clubs" var="club" value="#{clubMB.currentUserClubList}" style="width:100%; weight:30%">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="ID" />
+                        </f:facet>
+                        <h:outputText value="#{club.clubId}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Club Name" />
+                        </f:facet>
+                        <h:outputText value="#{club.clubName}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Club Category" />
+                        </f:facet>
+                        <h:outputText value="#{club.clubCategory}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Date" />
+                        </f:facet>
+                        <h:outputText value="#{club.clubInitDate}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Status" />
+                        </f:facet>
+                        <h:outputText value="#{club.clubStatus}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Club Introduction" />
+                        </f:facet>
+                        <h:outputText value="#{club.clubNote}" />
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:layoutUnit>
+    </p:layout>
+</h:body>
+
+</html>

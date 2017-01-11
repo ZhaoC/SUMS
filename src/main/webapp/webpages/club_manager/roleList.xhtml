@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--JasonC-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="Role List"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel for="clubChoice" value="Club ID: " />
+                    <h:selectOneMenu id="clubChoice" value="#{roleMB.selectedClubId}" required="true">
+                        <f:selectItems value="#{clubMB.currentUserClubListWithAdminRole}" var="clubSelect"
+                                       itemLabel="#{clubSelect.clubName}" itemValue="#{clubSelect.clubId}" />
+                    </h:selectOneMenu>
+
+                    <p:message id="clubIdMsg" for="clubChoice" display="icon"/>
+                    <p:commandButton id="chooseClub" value="Select" action="#{roleMB.chooseClub()}" ajax="false"/>
+                </h:panelGrid>
+            </h:form><br></br>
+            <h:form id="RolesListForm">
+                <p:panel header="Role List">
+                    <p:dataTable id="datalist" value="#{roleMB.roleListBySelectedClubId}" var="item"
+                                 selectionMode="single" selection="#{roleMB.selectedRole}"
+                                 paginator="true"
+                                 rowKey="#{item.roleId}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Role ID" />
+                            </f:facet>
+                            <h:outputText value="#{item.roleId}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Role Title" />
+                            </f:facet>
+                            <h:outputText value="#{item.roleTitle}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Role Privilege" />
+                            </f:facet>
+                            <h:outputText value="#{item.rolePrivilege}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="User ID" />
+                            </f:facet>
+                            <h:outputText value="#{item.userId}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Club ID" />
+                            </f:facet>
+                            <h:outputText value="#{item.clubId}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Role InitiDate" />
+                            </f:facet>
+                            <h:outputText value="#{item.roleInitDate}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Role Status" />
+                            </f:facet>
+                            <h:outputText value="#{item.roleStatus}" />
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Create" update=":RolesCreateForm" oncomplete="PF('RolesCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="View" update=":RolesViewForm" oncomplete="PF('RolesViewDialog').show()" disabled="#{empty roleMB.selectedRole}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Edit" update=":RolesEditForm" oncomplete="PF('RolesEditDialog').show()" disabled="#{empty roleMB.selectedRole}"/>
+
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="roleCreate.xhtml"/>
+            <ui:include src="roleEdit.xhtml"/>
+            <ui:include src="roleView.xhtml"/>
+        </ui:define>
+    </ui:composition>
+    <h:outputStylesheet library="css" name="primeface-custom-manager.css" />
+</html>

@@ -1,0 +1,92 @@
+<!--ZhaoC-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<script name="jquery/jquery.js" library="primefaces"></script>
+
+	<script type="text/javascript">
+//		window.onload = function() {
+//			//Popup new smaller window
+//			//window.open('http://sheridancollegesums.slack.com/','Slack','fullscreen=yes, menubar=0, scrollbars=yes, resizable=yes,dependent=0,status=0')
+//			//Open new tab in browser
+//			window.open('http://sheridancollegesums.slack.com/','Slack')
+//		}
+	</script>
+
+	<title>Club Member</title>
+
+	<style type="text/css">
+		/*body{*/
+			/*background:#629BE5;*/
+		/*}*/
+	</style>
+
+
+</h:head>
+
+<body>
+<h:form id="formMember">
+	<h:outputStylesheet library="css" name="style.css"  />
+	<p:tabView style="height:100%;">
+		<p:tab title="Member Homepage" id="tab1">
+	<!--The page layout-->
+			<p:growl id="msgs" showDetail="true" />
+			<p:layout style="min-width:900px; min-height:600px; padding: 0px">
+				<p:layoutUnit fullPage="true"  position="west" size="185" >
+					<h:panelGrid columns="2" cellpadding="3">
+						<p:menu style="width:145px; height:100%">
+							<p:menuitem value="Calendar" icon="ui-icon-calendar" onclick="showCalendar()"/>
+							<p:menuitem value="Clubs"  icon="ui-icon-home" onclick="showClubs()"/>
+							<p:menuitem value="Activities" icon="ui-icon-pin-w" onclick="showActivities()"/>
+							<p:menuitem value="My Profile" icon="ui-icon-person" onclick="showProfile()"/>
+							<p:menuitem value="Settings" icon="ui-icon-gear" onclick="showSettings()"/>
+						</p:menu>
+					</h:panelGrid>
+					<a href="http://sheridancollegesums.slack.com/" target="_blank" ><p:button value="Start Chat" icon="ui-icon-star"></p:button></a>
+				</p:layoutUnit>
+
+				<p:layoutUnit fullPage="true"  position="center" id="activitiesIframe">
+					<iframe id="iframeCenter" src="./webpages/club_member/activity_calendar.xhtml" width="100%"
+							height="100%" frameborder="0">
+					</iframe>
+				</p:layoutUnit>
+			</p:layout>
+		</p:tab>
+
+		<!--<p:tab title="Chatting Room" id="tab2">-->
+			<!--<p:layout style="min-width:900px; min-height:600px; padding: 0px">-->
+					<!--<p:layoutUnit fullpage="true" position="center" id="chatIframe">-->
+						<!--<iframe id="iframeChat" src="./webpages/club_member/member_chatting.xhtml" width="100%"-->
+								<!--height="100%" frameborder="0">-->
+						<!--</iframe>-->
+					<!--</p:layoutUnit>-->
+			<!--</p:layout>-->
+		<!--</p:tab>-->
+
+		<p:tab title="News Board" id="tab3">
+				<iframe id="iframeNews" src="./webpages/club_member/club_view_news.xhtml" width="100%"
+						height="100%" frameborder="0">
+				</iframe>
+		</p:tab>
+	</p:tabView>
+</h:form>
+
+<h:form>
+	<p:commandButton style="float: right; position: absolute; top: 15px; right: 15px"
+					 action="#{loginValidate.logout()}" value="Logout" ajax="false" icon="ui-icon-power"/>
+
+	<p:commandButton style="float: right; position: absolute; top: 15px; right: 175px; display: #{navigationController.viewSwitchButtonValue}"
+					 action="#{navigationController.moveToManagerPage()}" value="Manage Club" ajax="false" icon="ui-icon-transferthick-e-w
+ "/>
+	<h:outputLabel style="float: right; position: absolute; top: 20px; right: 395px; font-size: large; font-weight: bolder;
+	color: #34b0ff; text-decoration: underline;" disabled="true"
+				   value="Club Member: #{userMB.currentUserName}" />
+  
+</h:form>
+
+<h:outputScript library="js" name="index.js" />
+</body>
+</html>

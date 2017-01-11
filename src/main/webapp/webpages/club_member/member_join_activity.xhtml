@@ -1,0 +1,115 @@
+<!--ZhaoC-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Club Page</title>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <style type="text/css">
+        /*body{*/
+        /*background:#629BE5;*/
+        /*}*/
+    </style>
+</h:head>
+<h:body>
+    <p:layout style="width:100%; height:90%; padding: 0px">
+
+        <!--Layout for user to join new Activities-->
+        <p:layoutUnit position="south" size="700" header="More Activities for You" resizable="true" closable="true" collapsible="true" effect="drop">
+            <h:form id="form">
+                <p:growl id="msgs" showDetail="true" />
+
+                <p:dataTable id="activitySelectDT" var="activity" value="#{actMB.currentUserActivityList}" selection="#{actMB.selectedActivities}" rowKey="#{activity.actId}" style="margin-bottom:0">
+                    <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+                    <p:column headerText="Activity ID">
+                        <h:outputText value="#{activity.actId}" />
+                    </p:column>
+                    <p:column headerText="Activity Name">
+                        <h:outputText value="#{activity.actName}" />
+                    </p:column>
+                    <p:column headerText="Club ID">
+                        <h:outputText value="#{activity.clubId}" />
+                    </p:column>
+                    <p:column headerText="Start Date">
+                        <h:outputText value="#{activity.actStartDate}" />
+                    </p:column>
+                    <p:column headerText="End Date">
+                        <h:outputText value="#{activity.actEndDate}" />
+                    </p:column>
+                    <p:column headerText="Location">
+                        <h:outputText value="#{activity.actLocation}" />
+                    </p:column>
+                    <p:column headerText="Assignee">
+                        <h:outputText value="#{activity.actAssignee}" />
+                    </p:column>
+                    <p:column headerText="Note">
+                        <h:outputText value="#{activity.actNote}" />
+                    </p:column>
+                    <f:facet name="footer">
+                        <p:commandButton process="activitySelectDT" icon="ui-icon-search" value="Join Selected Activities" action="#{clubMB.joinSelectedClubsForCurrentUser}" ajax="false"/>
+                    </f:facet>
+                </p:dataTable>
+            </h:form>
+        </p:layoutUnit>
+
+        <!--Show User Joined Activities-->
+        <p:layoutUnit position="center" resizable="true" closable="true" collapsible="true">
+            <h:form>
+                <h:outputText value="Joined Activities : "></h:outputText>
+                <p:dataTable id="activities" var="activity" value="#{actMB.currentUserActivityList}" style="width:100%; weight:30%">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="ID" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actId}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Activity Name" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actName}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Club ID" />
+                        </f:facet>
+                        <h:outputText value="#{activity.clubId}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Start Date" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actStartDate}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="End Date" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actEndDate}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Location" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actLocation}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Assignee" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actAssignee}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Note" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actNote}" />
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:layoutUnit>
+    </p:layout>
+</h:body>
+</html>

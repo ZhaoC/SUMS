@@ -1,0 +1,47 @@
+<!--JasonC-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <script name="jquery/jquery.js" library="primefaces"></script>
+        <script name="manager.js" library="js"></script>
+        <style type="text/css">
+        /*body{*/
+        /*background:#629BE5;*/
+        /*}*/
+    </style>
+    </h:head>
+    <p:layout style="width:100%; height:90%; padding: 0px">
+    <p:layoutUnit position="center">
+        <f:view>
+            <h:outputLabel value="Introduction Page"/>
+        </f:view><br></br>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="clubChoice" value="Club ID: " />
+                <p:selectOneListbox id="clubChoice" value="#{clubMB.selectedClub}" required="true">
+                    
+                    <f:selectItems value="#{clubMB.getCurrentUserClubList()}" var="clubSelect" itemLabel="#{clubSelect.clubName}" itemValue="#{clubSelect}" />
+                    <f:validateLength minimum="1" />
+                    <p:ajax event="blur" update="clubIdMsg" />
+                    
+                </p:selectOneListbox>
+                
+                
+                <p:commandButton id="chooseClub" value="Select" action="#{clubMB.selectClub()}" ajax="false">
+                </p:commandButton>    
+            </h:panelGrid>
+        </h:form><br></br>
+        <h:form>
+            <p:dataTable id="clubSettings" value="#{clubMB.selectedClub}" var="club" style="width:100%; weight:30%">
+                <h:outputText id="clubName" value="#{club.clubName}" /><br></br>
+                <h:outputText id="clubIntro" value="#{club.clubNote}" />
+            </p:dataTable>
+        </h:form>
+        
+    </p:layoutUnit>
+    </p:layout>
+    <h:outputStylesheet library="css" name="primeface-custom-manager.css" />
+</html>

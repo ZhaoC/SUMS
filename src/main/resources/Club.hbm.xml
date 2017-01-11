@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.capstone.spring.model.Club" table="club" schema="" catalog="sums">
+        <id name="clubId">
+            <column name="clubId" sql-type="int" not-null="true"/>
+        </id>
+        <property name="clubName">
+            <column name="clubName" sql-type="varchar" length="30" not-null="true"/>
+        </property>
+        <property name="clubCategory">
+            <column name="clubCategory" sql-type="varchar" length="30" not-null="true"/>
+        </property>
+        <property name="clubInitDate">
+            <column name="clubInitDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="clubStatus">
+            <column name="clubStatus" sql-type="varchar" length="15" not-null="true"/>
+        </property>
+        <property name="clubNote">
+            <column name="clubNote" sql-type="varchar" length="500"/>
+        </property>
+        <property name="clubOwner">
+            <column name="clubOwner" sql-type="int" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

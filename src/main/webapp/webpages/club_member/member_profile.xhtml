@@ -1,0 +1,62 @@
+<!--Chan Yu-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Profile Page</title>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+</h:head>
+<h:body>
+    <p:layout  style="width:100%; height:90%; padding: 0px">
+        <p:layoutUnit position="center" >
+            <h:form >
+                <table>
+                    <tr>
+                        <td><p:outputLabel value="First Name:"/></td>
+                        <td><p:inputText id="userFirstName" value="#{userMB.userFirstName}"/>
+                            <p:watermark for="userFirstName" value="#{userMB.currentUser.userFirstName}" id="watermark1" /></td>
+
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td><p:outputLabel value="Last Name:" /></td>
+                        <td><p:inputText id="userLastName" value="#{userMB.userLastName}"/>
+                            <p:watermark for="userLastName" value="#{userMB.currentUser.userLastName}" id="watermark2" /></td>
+
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td><p:outputLabel value="Gender:"  /></td>
+                        <td> <p:inputText id="userGender" value="#{userMB.userGender}" disabled="true"/>
+                            <p:watermark for="userGender" value="#{userMB.currentUser.userGender}" id="watermark3" /></td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td><p:outputLabel value="Date of Birth:"/></td>
+                        <td><p:inputText id="userBirth" value="#{userMB.userBirth}" disabled="true"/>
+                            <p:watermark for="userBirth" value="#{userMB.currentUser.userBirth}" id="watermark4" /></td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td><p:outputLabel value="Email:" /></td>
+                        <td><p:inputText id="userEmail" value="#{userMB.userEmail}" />
+                            <p:watermark for="userEmail" value="#{userMB.currentUser.userEmail}" id="watermark5" /></td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td><p:outputLabel value="Phone:"/></td>
+                        <td><p:inputText id="userPhone" value="#{userMB.userPhone}" />
+                            <p:watermark for="userPhone" value="#{userMB.currentUser.userPhone}" id="watermark6" /></td>
+                    </tr>
+                    <tr>
+                        <td><p:commandButton id="updateUser" value="Save" action="#{userMB.updateUser}" ajax="false"/></td>
+                    </tr>
+                </table>
+            </h:form>
+        </p:layoutUnit>
+    </p:layout>
+
+</h:body>
+
+</html>

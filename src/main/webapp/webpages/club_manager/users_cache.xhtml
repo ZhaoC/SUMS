@@ -1,0 +1,153 @@
+<!--ZhaoC-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Activity Page</title>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <style type="text/css">
+        /*body{*/
+        /*background:#629BE5;*/
+        /*}*/
+    </style>
+</h:head>
+
+<h:body>
+    <p:layout style="width:100%; height:90%; padding: 0px">
+        <p:layoutUnit position="west" resizable="true" size="400" minSize="300" maxSize="500">
+            <h:form>
+                <table>
+                    <tr>
+                        <td><h:outputLabel for="userFirstName" value="First Name: " /></td>
+                        <td><p:inputText id="userFirstName" value="#{userMB.userFirstName}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="firstNameMsg" />
+                        </p:inputText>
+                            <p:message id="firstNameMsg" for="userFirstName" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="userLastName" value="Last Name: " /></td>
+                        <td><p:inputText id="userLastName" value="#{userMB.userLastName}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="lastNameMsg" />
+                        </p:inputText>
+                            <p:message id="lastNameMsg" for="userLastName" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="userPassword" value="Password: " /></td>
+                        <td><p:inputText id="userPassword" value="#{userMB.userPassword}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="passwordMsg" />
+                        </p:inputText>
+                            <p:message id="passwordMsg" for="userPassword" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="userGender" value="Gender: " /></td>
+                        <td><p:inputText id="userGender" value="#{userMB.userGender}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="userGenderMsg" />
+                        </p:inputText>
+                            <p:message id="userGenderMsg" for="userGender" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><p:outputLabel for="button" value="Birth:" /></td>
+                        <td><p:calendar id="button" value="#{userMB.userBirth}" showOn="button" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="userEmail" value="Email : " /></td>
+                        <td><p:inputText id="userEmail" value="#{userMB.userEmail}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="userEmailMsg" />
+                        </p:inputText>
+                            <p:message id="userEmailMsg" for="userEmail" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="userPhone" value="Phone : " /></td>
+                        <td><p:inputText id="userPhone" value="#{userMB.userPhone}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="userPhoneMsg" />
+                        </p:inputText>
+                            <p:message id="userPhoneMsg" for="userPhone" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><p:commandButton id="addUser" value="Add" action="#{userMB.addUser}" ajax="false"/></td>
+                        <td><p:commandButton id="reset" value="Reset" action="#{userMB.reset}" ajax="false"/></td>
+                    </tr>
+                </table>
+            </h:form>
+        </p:layoutUnit>
+
+        <p:layoutUnit position="center">
+            <h:form>
+                <h:outputText value="Users"></h:outputText>
+                <p:dataTable id="users" var="user" value="#{userMB.userList}" style="width:100%; weight:30%">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="ID" />
+                        </f:facet>
+                        <h:outputText value="#{user.userId}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="First Name" />
+                        </f:facet>
+                        <h:outputText value="#{user.userFirstName}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Last Name" />
+                        </f:facet>
+                        <h:outputText value="#{user.userLastName}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Password" />
+                        </f:facet>
+                        <h:outputText value="#{user.userPassword}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Gender" />
+                        </f:facet>
+                        <h:outputText value="#{user.userGender}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Birth" />
+                        </f:facet>
+                        <h:outputText value="#{user.userBirth}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Email" />
+                        </f:facet>
+                        <h:outputText value="#{user.userEmail}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Phone" />
+                        </f:facet>
+                        <h:outputText value="#{user.userPhone}" />
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:layoutUnit>
+    </p:layout>
+</h:body>
+<h:outputStylesheet library="css" name="primeface-custom-manager.css" />
+</html>

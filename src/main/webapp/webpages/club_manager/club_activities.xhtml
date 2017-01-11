@@ -1,0 +1,203 @@
+<!--ZhaoC-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Activity Page</title>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <style type="text/css">
+        /*body{*/
+        /*background:#629BE5;*/
+        /*}*/
+    </style>
+</h:head>
+
+<h:body>
+    <p:layout style="width:100%; height:90%; padding: 0px">
+        <p:layoutUnit position="west" resizable="true" size="400" minSize="300" maxSize="500">
+            <h:form>
+                <h:outputText value="Create new Activity : "></h:outputText>
+                <table>
+                    <tr>
+                        <td><h:outputLabel for="actName" value="Activity Name : " /></td>
+                        <td><p:inputText id="actName" value="#{actMB.actName}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="nameMsg" />
+                        </p:inputText>
+                            <p:message id="nameMsg" for="actName" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="actForClub" value="Club ID: " /></td>
+                        <td><h:selectOneMenu id="actForClub" value="#{actMB.clubId}" required="true">
+                            <f:selectItems value="#{clubMB.currentUserClubListWithAdminRole}" var="club"
+                                           itemLabel="#{club.clubName}" itemValue="#{club.clubId}" />
+                        </h:selectOneMenu>
+                           
+                            <p:message id="clubIdMsg" for="actForClub" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><p:outputLabel for="startdatetime" value="Start Date time:" /> </td>
+                        <td><p:calendar id="startdatetime" value="#{actMB.actStartDate}" pattern="MM/dd/yyyy HH:mm:ss" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><p:outputLabel for="enddatetime" value="End Date time:" /> </td>
+                        <td><p:calendar id="enddatetime" value="#{actMB.actEndDate}" pattern="MM/dd/yyyy HH:mm:ss" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="actStatus" value="Activity Status: " /></td>
+                        <td><p:selectOneRadio id="actStatus" value="#{actMB.actStatus}" required="true" >
+                            <f:selectItem itemLabel="Active" itemValue="ACTIVE"></f:selectItem>
+                            <f:selectItem itemLabel="Inactive" itemValue="INACTIVE"></f:selectItem>
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="actStatusMsg" />
+                        </p:selectOneRadio>
+                            <p:message id="actStatusMsg" for="actStatus" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="actCapacity" value="Activity Capacity: " /></td>
+                        <td><p:inputText id="actCapacity" value="#{actMB.actCapacity}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="actCapacityMsg" />
+                        </p:inputText>
+                            <p:message id="actCapacityMsg" for="actCapacity" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="actLocation" value="Activity Location: " /></td>
+                        <td><p:inputText id="actLocation" value="#{actMB.actLocation}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="actLocationMsg" />
+                        </p:inputText>
+                            <p:message id="actLocationMsg" for="actLocation" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="actBudget" value="Activity Budget: " /></td>
+                        <td><p:inputText id="actBudget" value="#{actMB.actBudget}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="actBudgetMsg"/>
+                        </p:inputText>
+                            <p:message id="actBudgetMsg" for="actBudget" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="actAssignee" value="Activity Assignee: " /></td>
+                        <td><p:selectOneListbox id="actAssignee" value="#{actMB.actAssignee}" required="true">
+                                <f:selectItem itemLabel="#{userMB.currentUserName}" itemValue="#{userMB.currentUser.userId}"/>
+                                <f:validateLength minimum="1" />
+                                <p:ajax event="blur" update="clubIdMsg" />
+                            </p:selectOneListbox>
+                            
+                        
+                            <p:message id="actAssigneeMsg" for="actAssignee" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="actNote" value="Activity Note: " /></td>
+                        <td><p:inputText id="actNote" value="#{actMB.actNote}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="actNoteMsg"/>
+                        </p:inputText>
+                            <p:message id="actNoteMsg" for="actNote" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><p:commandButton id="addClub" value="Create" action="#{actMB.addActivity}" ajax="false"/></td>
+                        <td><p:commandButton id="reset" value="Reset" action="#{actMB.reset}" ajax="false"/></td>
+                    </tr>
+                </table>
+            </h:form>
+        </p:layoutUnit>
+
+        <p:layoutUnit position="center">
+            <h:form>
+                <h:outputText value="Activities : "></h:outputText>
+                <p:dataTable id="activities" var="activity" value="#{actMB.activityList}" style="width:100%; weight:30%">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Activity ID" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actId}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Activity Name" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actName}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Club ID" />
+                        </f:facet>
+                        <h:outputText value="#{activity.clubId}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Start Date" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actStartDate}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="End Date" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actEndDate}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Status" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actStatus}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Capacity" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actCapacity}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Location" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actLocation}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Budget" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actBudget}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Assignee" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actAssignee}" />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Note" />
+                        </f:facet>
+                        <h:outputText value="#{activity.actNote}" />
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:layoutUnit>
+    </p:layout>
+</h:body>
+<h:outputStylesheet library="css" name="primeface-custom-manager.css" />
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+			  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+			  version="2.0">
+<application>
+	<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+</application>
+
+	<!--<managed-bean>-->
+		<!--<managed-bean-name>clubMB</managed-bean-name>-->
+		<!--<managed-bean-class>com.capstone.managedController.ClubManagedController</managed-bean-class>-->
+		<!--<managed-bean-scope>request</managed-bean-scope>-->
+	<!--</managed-bean>-->
+	<!--<navigation-rule>-->
+		<!--<from-view-id>/login.index.xhtml</from-view-id>-->
+		<!--<navigation-case>-->
+			<!--<from-action>#{loginBean.checkValidUser}</from-action>-->
+			<!--<from-outcome>UserLogin</from-outcome>-->
+			<!--<to-view-id>/UserLogin.xhtml</to-view-id>-->
+		<!--</navigation-case>-->
+
+		<!--<from-view-id>/UserLogin.xhtml</from-view-id>-->
+		<!--<navigation-case>-->
+			<!--<from-action>LoginPage</from-action>-->
+			<!--<from-outcome>LoginPage</from-outcome>-->
+			<!--<to-view-id>/LoginPage.xhtml</to-view-id>-->
+		<!--</navigation-case>-->
+	<!--</navigation-rule>-->
+</faces-config>

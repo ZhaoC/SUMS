@@ -1,0 +1,93 @@
+<!--ZhaoC-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Register Page</title>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <style type="text/css">
+        /*body{*/
+        /*background:#629BE5;*/
+        /*}*/
+    </style>
+</h:head>
+
+<h:body>
+        <h:form style="margin: auto; width: 30%; border: 1px solid #73AD21; padding: 10px; top: 35px;">
+            <table>
+                <tr>
+                    <td><h:outputLabel for="userFirstName" value="First Name: " /></td>
+                    <td><p:inputText id="userFirstName" value="#{userMB.userFirstName}" required="true" >
+                        <f:validateLength minimum="1" />
+                        <p:ajax event="blur" update="firstNameMsg" />
+                    </p:inputText>
+                        <p:message id="firstNameMsg" for="userFirstName" display="icon"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><h:outputLabel for="userLastName" value="Last Name: " /></td>
+                    <td><p:inputText id="userLastName" value="#{userMB.userLastName}" required="true" >
+                        <f:validateLength minimum="1" />
+                        <p:ajax event="blur" update="lastNameMsg" />
+                    </p:inputText>
+                        <p:message id="lastNameMsg" for="userLastName" display="icon"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><h:outputLabel for="userPassword" value="Password: " /></td>
+                    <td><p:password id="userPassword" value="#{userMB.userPassword}" required="true" >
+                        <f:validateLength minimum="1" />
+                        <p:ajax event="blur" update="passwordMsg" />
+                    </p:password>
+                        <p:message id="passwordMsg" for="userPassword" display="icon"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><h:outputLabel for="userGender" value="Gender: " /></td>
+                    <td><p:inputText id="userGender" value="#{userMB.userGender}" required="true" >
+                        <f:validateLength minimum="1" />
+                        <p:ajax event="blur" update="userGenderMsg" />
+                    </p:inputText>
+                        <p:message id="userGenderMsg" for="userGender" display="icon"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><p:outputLabel for="button" value="Birth:" /></td>
+                    <td><p:calendar id="button" value="#{userMB.userBirth}" showOn="button" /></td>
+                </tr>
+
+                <tr>
+                    <td><h:outputLabel for="userEmail" value="Email : " /></td>
+                    <td><p:inputText id="userEmail" value="#{userMB.userEmail}" required="true" >
+                        <f:validateLength minimum="1" />
+                        <p:ajax event="blur" update="userEmailMsg" />
+                    </p:inputText>
+                        <p:message id="userEmailMsg" for="userEmail" display="icon"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><h:outputLabel for="userPhone" value="Phone : " /></td>
+                    <td><p:inputText id="userPhone" value="#{userMB.userPhone}" required="true" >
+                        <f:validateLength minimum="1" />
+                        <p:ajax event="blur" update="userPhoneMsg" />
+                    </p:inputText>
+                        <p:message id="userPhoneMsg" for="userPhone" display="icon"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><p:commandButton id="addUser" value="Register" action="#{userMB.registerUser}" ajax="false"/></td>
+                    <td><p:commandButton id="reset" value="Reset" action="#{userMB.resetRegisterField}" ajax="false"/></td>
+                </tr>
+            </table>
+        </h:form>
+</h:body>
+<h:outputScript library="js" name="index.js" />
+</html>

@@ -1,0 +1,54 @@
+<!--Chan Yu-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <title>View Clubs</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:outputText value="All My Clubs : "></h:outputText>
+        <p:dataTable id="clubs" var="club" value="#{clubMB.currentUserClubList}" style="width:100%; weight:30%">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="ID" />
+                </f:facet>
+                <h:outputText value="#{club.clubId}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Club Name" />
+                </f:facet>
+                <h:outputText value="#{club.clubName}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Club Category" />
+                </f:facet>
+                <h:outputText value="#{club.clubCategory}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Date" />
+                </f:facet>
+                <h:outputText value="#{club.clubInitDate}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Status" />
+                </f:facet>
+                <h:outputText value="#{club.clubStatus}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Club Introduction" />
+                </f:facet>
+                <h:outputText value="#{club.clubNote}" />
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+
+</html>

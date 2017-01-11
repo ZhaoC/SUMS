@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.capstone.spring.model.Activity" table="activity" schema="" catalog="sums">
+        <id name="actId">
+            <column name="actId" sql-type="int" not-null="true"/>
+        </id>
+        <property name="clubId">
+            <column name="clubId" sql-type="int" not-null="true"/>
+        </property>
+        <property name="actName">
+            <column name="actName" sql-type="varchar" length="30" not-null="true"/>
+        </property>
+        <property name="actStartDate">
+            <column name="actStartDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="actEndDate">
+            <column name="actEndDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="actStatus">
+            <column name="actStatus" sql-type="varchar" length="15" not-null="true"/>
+        </property>
+        <property name="actCapacity">
+            <column name="actCapacity" sql-type="int" not-null="true"/>
+        </property>
+        <property name="actLocation">
+            <column name="actLocation" sql-type="varchar" length="300" not-null="true"/>
+        </property>
+        <property name="actBudget">
+            <column name="actBudget" sql-type="int"/>
+        </property>
+        <property name="actAssignee">
+            <column name="actAssignee" sql-type="int" not-null="true"/>
+        </property>
+        <property name="actNote">
+            <column name="actNote" sql-type="varchar" length="500"/>
+        </property>
+    </class>
+</hibernate-mapping>

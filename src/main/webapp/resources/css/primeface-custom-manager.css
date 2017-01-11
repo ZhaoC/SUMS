@@ -1,0 +1,101 @@
+:hov
+
+.cls
+
+element.style {
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border: 1px solid #ffffff;
+    background: #1484e6 url(/SUMS-0.0.1-SNAPSHOT/javax.faces.resource/images/ui-bg_diagonals-thick_22_1484e6_40x40.png.xhtml?ln=primefaces-excite-bike) 50% 50% repeat;
+    font-weight: bold;
+    color: #ffffff;
+}
+.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td, .ui-datatable tfoot th {
+    padding: 4px 10px;
+    overflow: hidden;
+    border-width: 1px;
+    border-style: solid;
+}
+.ui-datatable thead th, .ui-datatable tfoot td {
+    text-align: center;
+}
+user agent stylesheet
+th {
+    font-weight: bold;
+    text-align: -internal-center;
+}
+user agent stylesheet
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+Inherited from table
+.ui-datatable table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+user agent stylesheet
+table {
+    white-space: normal;
+    line-height: normal;
+    font-weight: normal;
+    font-size: medium;
+    font-style: normal;
+    color: -internal-quirk-inherit;
+    text-align: start;
+    font-variant: normal normal;
+}
+user agent stylesheet
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+Inherited from div#j_idt49:clubs.ui-datatable.ui-widget
+.ui-widget .ui-widget {
+    font-size: 1em;
+}
+.ui-widget {
+    font-family: segoe ui, Arial, sans-serif;
+    font-size: 1.1em;
+}
+Inherited from div.ui-layout-unit-content.ui-widget-content
+Style Attribute {
+    position: relative;
+    height: 244px;
+    visibility: visible;
+}
+.ui-widget-content {
+    border: 1px solid #aaaaaa;
+    background: #eeeeee url(/SUMS-0.0.1-SNAPSHOT/javax.faces.resource/images/ui-bg_inset-hard_100_eeeeee_1x100.png.xhtml?ln=primefaces-excite-bike) 50% bottom repeat-x;
+    color: #222222;
+}
+Inherited from div#j_idt48.ui-layout-unit.ui-widget.ui-widget-content.ui-corner-all.ui-layout-north.ui-layout-pane.ui-layout-pane-north
+Style Attribute {
+    position: absolute;
+    margin: 0px;
+    top: 0px;
+    bottom: auto;
+    left: 0px;
+    right: 0px;
+    width: auto;
+    z-index: 0;
+    height: 253px;
+    display: block;
+    visibility: visible;
+}
+.ui-layout-unit {
+    visibility: hidden;
+    padding: 0.2em;
+}
+.ui-widget-content {
+    border: 1px solid #aaaaaa;
+    background: #eeeeee url(/SUMS-0.0.1-SNAPSHOT/javax.faces.resource/images/ui-bg_inset-hard_100_eeeeee_1x100.png.xhtml?ln=primefaces-excite-bike) 50% bottom repeat-x;
+    color: #222222;
+}
+.ui-widget {
+    font-family: segoe ui, Arial, sans-serif;
+    font-size: 1.1em;
+}

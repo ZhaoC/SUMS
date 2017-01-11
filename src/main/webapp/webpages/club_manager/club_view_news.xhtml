@@ -1,0 +1,43 @@
+<!--ZhaoC-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>News Page</title>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <style type="text/css">
+        /*.withoutUnderline{*/
+            /*text-decoration: none;*/
+        /*}*/
+    </style>
+</h:head>
+<h:body>
+    <h:form id="form">
+    <p:dataGrid var="clubNews" value="#{clubNewsMB.clubsNewsList}" columns="1" layout="grid"
+                rows="6" paginator="true" id="clubsNewsList"
+                paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                rowsPerPageTemplate="6,12,16">
+
+        <f:facet name="header">
+           <h3 style="color: dodgerblue">News Board</h3>
+        </f:facet>
+
+        <p:panel header="#{clubNews.newsTitle}" style="text-align:center">
+            <h:panelGrid columns="1" style="width:100%">
+                <h:panelGrid columns="2" cellpadding="10">
+                    <p:graphicImage value="../../resources/images/megaphone.png"/>
+                    <h:outputText value="#{clubNews.newsContent}" />
+                </h:panelGrid>
+                <p:commandLink action="#{clubNewsMB.viewSelectedNews}" title="View Detail">
+                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+                    <f:setPropertyActionListener value="#{clubNews}" target="#{clubNewsMB.selectedNews}" />
+                </p:commandLink>
+            </h:panelGrid>
+        </p:panel>
+
+    </p:dataGrid>
+    </h:form>
+</h:body>
+<h:outputStylesheet library="css" name="primeface-custom-manager.css" />
+</html>

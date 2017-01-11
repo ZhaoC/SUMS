@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.capstone.spring.model.Role" table="role" schema="" catalog="sums">
+        <id name="roleId">
+            <column name="roleId" sql-type="int" not-null="true"/>
+        </id>
+        <property name="roleTitle">
+            <column name="roleTitle" sql-type="varchar" length="30" not-null="true"/>
+        </property>
+        <property name="rolePrivilege">
+            <column name="rolePrivilege" sql-type="varchar" length="30" not-null="true"/>
+        </property>
+        <property name="userId">
+            <column name="userId" sql-type="int" not-null="true"/>
+        </property>
+        <property name="clubId">
+            <column name="clubId" sql-type="int" not-null="true"/>
+        </property>
+        <property name="roleInitDate">
+            <column name="roleInitDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="roleStatus">
+            <column name="roleStatus" sql-type="varchar" length="10" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

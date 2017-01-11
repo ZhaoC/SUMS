@@ -1,0 +1,69 @@
+<!--ZhaoC-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <title>Club Manager</title>
+</h:head>
+
+<h:form id="formManage">
+    <h:outputStylesheet library="css" name="style.css"  />
+    <p:tabView style="height:100%;">
+        <p:tab title="Manage Club" id="tab1">
+             <p:layout style="min-width:900px; min-height:600px; padding: 0px">
+                <p:layoutUnit fullPage="true"  position="west" size="185" >
+                    <h:panelGrid columns="2" cellpadding="3">
+                        <p:menu style="width:145px; height:100%">
+                            <p:menuitem value="Members" icon="ui-icon-person" onclick="showRoles()"/>
+                            <p:menuitem value="Activities" icon="ui-icon-link" onclick="showActivities()"/>
+                            <p:menuitem value="Clubs" icon="ui-icon-signal-diag" onclick="showClubs()"/>
+                        </p:menu>
+                    </h:panelGrid>
+                </p:layoutUnit>
+
+                <p:layoutUnit fullPage="true"  position="center" id="activitiesIframe">
+                    <iframe id="iframeCenter" src="./webpages/club_manager/roleList.xhtml" width="100%"
+                            height="100%" frameborder="0">
+                    </iframe>
+                </p:layoutUnit>
+            </p:layout>
+        </p:tab>
+
+
+        <p:tab title="News Center"  id="tab3">
+            <p:layout style="min-width:900px; min-height:600px; padding: 0px">
+                <p:layoutUnit fullPage="true"  position="west" size="185" >
+                    <h:panelGrid columns="2" cellpadding="3">
+                        <p:menu style="width:145px; height:100%">
+                            <p:menuitem value="News Posted"  icon="ui-icon-bookmark" onclick="showAllNews()"/>
+                            <p:menuitem value="Create News" icon="ui-icon-document-b" onclick="showNewsEditor()"/>
+                        </p:menu>
+                    </h:panelGrid>
+                </p:layoutUnit>
+
+                <p:layoutUnit fullPage="true"  position="center" id="newsIframe">
+                    <iframe id="iframeNews" src="./webpages/club_manager/club_view_news.xhtml" width="100%"
+                            height="100%" frameborder="0">
+                    </iframe>
+                </p:layoutUnit>
+            </p:layout>
+        </p:tab>
+    </p:tabView>
+</h:form>
+
+<h:form>
+    <p:commandButton style="float: right; position: absolute; top: 15px; right: 15px"
+                     action="#{loginValidate.logout()}" value="Logout" ajax="false" icon="ui-icon-power"/>
+    <p:commandButton style="float: right; position: absolute; top: 15px; right: 175px; "
+                     action="#{navigationController.moveToMemberPage}" value="Member Home" ajax="false" icon="ui-icon-transferthick-e-w
+ "/>
+    <h:outputLabel style="float: right; position: absolute; top: 20px; right: 395px; font-size: large; font-weight: bolder; color: orange; text-decoration: underline;"  disabled="true"
+                   value="Club Manager: #{userMB.currentUserName}" />
+</h:form>
+
+<h:outputScript library="js" name="club_manage.js" />
+<h:outputStylesheet library="css" name="primeface-custom-manager.css" />
+</html>

@@ -1,0 +1,84 @@
+<!--ZhaoC-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Club Page</title>
+    <script name="jquery/jquery.js" library="primefaces"></script>
+    <style type="text/css">
+        /*body{*/
+        /*background:#629BE5;*/
+        /*}*/
+    </style>
+</h:head>
+<h:body>
+    <p:layout style="width:100%; height:90%; padding: 0px">
+        <p:layoutUnit position="west" resizable="true" size="400" minSize="300" maxSize="500" >
+            <h:form>
+                <table>
+                    <tr>
+                        <td><h:outputLabel for="clubName" value="Club Name : " /></td>
+                        <td><p:inputText id="clubName" value="#{clubMB.clubName}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="nameMsg" />
+                        </p:inputText>
+                            <p:message id="nameMsg" for="clubName" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="clubCategory" value="Category : " /></td>
+                        <td><p:inputText id="clubCategory" value="#{clubMB.clubCategory}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="clubCategoryMsg" />
+                        </p:inputText>
+                            <p:message id="clubCategoryMsg" for="clubCategory" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><p:outputLabel for="button" value="Date:" /></td>
+                        <td><p:calendar id="button" value="#{clubMB.clubInitDate}" showOn="button" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="clubStatus" value="Status : " /></td>
+                        <td><p:inputText id="clubStatus" value="#{clubMB.clubStatus}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="clubStatusMsg" />
+                        </p:inputText>
+                            <p:message id="clubStatusMsg" for="clubStatus" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputLabel for="clubNote" value="ClubNote : " /></td>
+                        <td><p:inputText id="clubNote" value="#{clubMB.clubNote}" required="true" >
+                            <f:validateLength minimum="1" />
+                            <p:ajax event="blur" update="clubNoteMsg" />
+                        </p:inputText>
+                            <p:message id="clubNoteMsg" for="clubNote" display="icon"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><p:commandButton id="addClub" value="Add" action="#{clubMB.addClub}" ajax="false"/></td>
+                        <td><p:commandButton id="reset" value="Reset" action="#{clubMB.reset}" ajax="false"/></td>
+                    </tr>
+                </table>
+            </h:form>
+
+            <!--Delete Activity-->
+            <h:form>
+                <h:panelGrid columns="2">
+                    Club to Delete: <h:inputText value="#{clubMB.clubId}"/>
+                    <h:commandButton value="delete club" action="#{clubMB.deleteClub}"/>
+                </h:panelGrid>
+            </h:form><br></br>
+        </p:layoutUnit>
+
+    </p:layout>
+</h:body>
+
+</html>
