@@ -1,6 +1,7 @@
 package com.capstone.slackChat;
 
 import org.primefaces.json.JSONArray;
+import org.primefaces.json.JSONException;
 import org.primefaces.json.JSONObject;
 
 /**
@@ -52,16 +53,40 @@ public class SlackController {
 
     //Method used for retrieving user info by user name
     public static String getUserByName(String name){
-        JSONObject records = new JSONObject(getAllUsers());
-        JSONArray members = records.getJSONArray("members");
+        JSONObject records = null;
+        try {
+            records = new JSONObject(getAllUsers());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JSONArray members = null;
+        try {
+            members = records.getJSONArray("members");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         for ( int i = 0; i < members.length(); i++){
-            JSONObject user = members.getJSONObject(i);
-            String userName = user.getString("name");
+            JSONObject user = null;
+            try {
+                user = members.getJSONObject(i);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String userName = null;
+            try {
+                userName = user.getString("name");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             if( userName.equals(name)){
                 System.out.println("-----------User Found-----------------");
                 System.out.println(user.toString());
-                System.out.println("-----------ID-----------------" + user.getString("id"));
+                try {
+                    System.out.println("-----------ID-----------------" + user.getString("id"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 return user.toString();
             }
         }
@@ -69,7 +94,7 @@ public class SlackController {
     }
 
     //Method used for retrieving user info by user email
-    public static String getUserByEmail(String email){
+    public static String getUserByEmail(String email) throws JSONException{
         JSONObject records = new JSONObject(getAllUsers());
         JSONArray members = records.getJSONArray("members");
 
@@ -90,7 +115,7 @@ public class SlackController {
     }
 
     //Method used for retrieving a channel info by channel name
-    public static String getChannelByName(String name){
+    public static String getChannelByName(String name) throws JSONException{
         JSONObject records = new JSONObject(getAllChannels());
         JSONArray channels = records.getJSONArray("channels");
 
@@ -110,7 +135,7 @@ public class SlackController {
     }
 
     //Method used for retrieving a group info by group name
-    public static String getGroupByName(String name){
+    public static String getGroupByName(String name) throws JSONException{
         JSONObject records = new JSONObject(getAllGroups());
         JSONArray groups = records.getJSONArray("groups");
 
